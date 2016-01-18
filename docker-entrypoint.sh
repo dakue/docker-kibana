@@ -28,6 +28,8 @@ then
     fi
 
     sed -i "s;^elasticsearch_url:.*;elasticsearch_url: ${ELASTICSEARCH_URL};" "${KIBANA_CONFIG_FILE}"
+    # since version 4.2
+    sed -i "s;# elasticsearch.url:.*;elasticsearch.url: ${ELASTICSEARCH_URL};" "${KIBANA_CONFIG_FILE}"
 
     if [ -n "${KIBANA_INDEX}" ]
     then
