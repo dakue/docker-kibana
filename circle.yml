@@ -10,5 +10,5 @@ dependencies:
 test:
   override:
     - docker run -d elasticsearch --name elasticsearch; sleep 10
-    - docker run -d -p 5601:80 --link elasticsearch:elasticsearch dakue/influxdb; sleep 10
+    - docker run -d -p 5601:80 --link elasticsearch:elasticsearch dakue/kibana; sleep 10
     - curl --retry 10 --retry-delay 5 -v http://localhost
