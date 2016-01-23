@@ -12,6 +12,6 @@ test:
   override:
     - docker run -d -p 9200:9200 --name elasticsearch elasticsearch
     - until nc -w 1 localhost 9200; do sleep 5; done
-    - docker run -d -p 5601:80 --link elasticsearch:elasticsearch --name kibana dakue/kibana
+    - docker run -d -p 80:5601 --link elasticsearch:elasticsearch --name kibana dakue/kibana
     - nc -w 30 -z localhost 80
     - curl --retry 10 --retry-delay 5 -v http://localhost
