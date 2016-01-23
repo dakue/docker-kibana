@@ -11,7 +11,7 @@ test:
     - docker pull elasticsearch:latest
   override:
     - docker run -d -p 9200:9200 --name elasticsearch elasticsearch
-    - i=0; until nc -w 1 localhost 9200; do echo $i; test $i -lt 5 && break; sleep 5; ((i++)); done
+    - i=0; until nc -w 1 localhost 9200; do echo $i; test $i -ge 5 && break; sleep 5; ((i++)); done
     - docker run -d -p 80:5601 --link elasticsearch:elasticsearch --name kibana dakue/kibana
-    - i=0; until nc -w 1 localhost 80; do echo $i; test $i -lt 5 && break; sleep 5; ((i++)); done
+    - i=0; until nc -w 1 localhost 80; do echo $i; test $i -ge 5 && break; sleep 5; ((i++)); done
     - curl --retry 10 --retry-delay 5 -v http://localhost
