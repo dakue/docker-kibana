@@ -14,4 +14,5 @@ test:
     - ( i=0; until nc -w 1 -q 0 localhost 9200; do echo $i; test $i -ge 5 && break; sleep 5; ((i++)); done ) || true
     - docker run -d -p 80:5601 --link elasticsearch:elasticsearch --name kibana dakue/kibana
     - ( i=0; until nc -w 1 -q 0 localhost 80; do echo $i; test $i -ge 5 && break; sleep 5; ((i++)); done ) || true
-    - curl -sSL -I -X GET http://localhost | grep -q "200 OK"
+    - curl -sSL -I -X GET http://localhost | grep -q "200 OK" && touch .passed
+    - if  [ ! -f .passed ]; then docker logs kibana; fi;
