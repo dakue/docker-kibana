@@ -1,7 +1,7 @@
 FROM alpine:latest
 MAINTAINER Daniel Kühne <dkhmailto@googlemail.com>
 
-ENV KIBANA_VERSION 4.4.0
+ENV KIBANA_VERSION 4.4.1
 
 RUN set -x && \
   apk --update add curl tar && \
